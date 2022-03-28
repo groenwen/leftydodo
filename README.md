@@ -1,5 +1,11 @@
 # leftydodo
 
+## 主要色彩 color
+primary #4C6164
+secondary #CCA08D
+
+
+
 ## Project setup
 ```
 npm install

@@ -1,0 +1,97 @@
+<template>
+  <div class="head">
+    <div class="backdrop-blur d-flex justify-content-center align-items-center h-100">
+      <div class="text-center">
+        <h5 class="text-accent font-serif">- All Products -</h5>
+        <h1 class="text-white font-serif">給寶寶最好的</h1>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <table class="table align-middle">
+      <thead>
+        <tr>
+          <th scope="col">圖片</th>
+          <th scope="col">商品名稱</th>
+          <th scope="col">價格</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="item in products" :key="item.id" :class="{ 'd-none' : !item.is_enabled}">
+          <th scope="row"><img :src="item.imageUrl" alt="" width="50" class="img-fluid"></th>
+          <td>{{ item.title }}</td>
+          <td>${{ item.price }}</td>
+          <td class="text-end">
+            <button type="button" class="btn btn-outline-secondary btn-sm"
+              @click="openModal(item)">查看更多</button>&nbsp;
+            <button type="button" class="btn btn-primary btn-sm"
+            @click="addToCart(item.id, 1)" :class="{ disabled : isLoading}">
+              加入購物車
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <Pagination :pages="pagination" @emit-pages="getProducts"></Pagination>
+    <v-loading :active="isLoading" :loader="'dots'"></v-loading>
+    <Product-modal ref="callModal" :product-item="productItem" @modal-addtocart="addToCart"></Product-modal>
+  </div>
+</template>
+<script>
+import Pagination from '../components/PaginationTemp.vue'
+import ProductModal from '../components/ProductModal.vue'
+
+export default {
+  data () {
+    return {
+      isLoading: false,
+      products: [],
+      productItem: {},
+      pagination: {}
+    }
+  },
+  components: {
+    Pagination,
+    ProductModal
+  },
+  methods: {
+    getProducts (page = 1) {
+      this.isLoading = true
+      this.$http
+        .get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products?page=${page}`)
+        .then((res) => {
+          this.isLoading = false
+          this.products = res.data.products
+          this.pagination = res.data.pagination
+        })
+    },
+    openModal (item) {
+      this.$refs.callModal.innerOpenModal()
+      this.productItem = item
+    },
+    hideModal () {
+      this.$refs.callModal.innerhideModal()
+    },
+    // 加入購物車
+    addToCart (productId, qty = 1) {
+      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`
+      const data = { product_id: productId, qty }
+      this.isLoading = true
+      this.$http
+        .post(url, { data })
+        .then((res) => {
+          this.isLoading = false
+          this.hideModal()
+          alert(res.data.message)
+        }).catch((err) => {
+          alert(err.data)
+          this.isLoading = false
+        })
+    }
+  },
+  mounted () {
+    this.getProducts()
+  }
+}
+</script>
