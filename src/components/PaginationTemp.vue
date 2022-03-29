@@ -1,5 +1,5 @@
 <template>
-  <nav aria-label="Page navigation example">
+  <nav class="my-6" aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
       <li class="page-item" :class="{ disabled: !pages.has_pre }">
         <a
@@ -8,7 +8,7 @@
           aria-label="Previous"
           @click.prevent="emitPages(pages.current_page - 1)"
         >
-          <span aria-hidden="true">&laquo;</span>
+          <span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
         </a>
       </li>
       <li
@@ -28,12 +28,23 @@
           aria-label="Next"
           @click.prevent="emitPages(pages.current_page + 1)"
         >
-          <span aria-hidden="true">&raquo;</span>
+          <span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
         </a>
       </li>
     </ul>
   </nav>
 </template>
+
+<style lang="scss">
+.page-item {
+  padding-left: .25rem;
+  padding-right: .25rem;
+}
+.page-link{
+  border-radius: 50rem;
+  line-height: 1;
+}
+</style>
 
 <script>
 export default {

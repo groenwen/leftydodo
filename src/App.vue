@@ -6,11 +6,17 @@
 @import "./assets/stylesheets/all";
 @import url('https://fonts.googleapis.com/css2?family=MuseoModerno:wght@700&family=Noto+Sans+TC:wght@400;600&family=Noto+Serif+TC:wght@400;700&display=swap');
 
+@mixin accent-line($color) {
+  height: 1rem;
+  background-color: $color;
+  border-radius: $border-radius-pill;
+}
+
 #app {
   font-family: 'Noto Sans TC', Helvetica, Arial, sans-serif;
-  letter-spacing: .04em;
-
+  letter-spacing: .1em;
 }
+
 h2 {
   font-family: 'Noto Serif TC';
   font-weight: 600;
@@ -33,6 +39,7 @@ section {
   padding-top: 7rem;
   padding-bottom: 7rem;
 }
+
 //button
 .btn i {
   padding-right: .25rem;
@@ -40,8 +47,18 @@ section {
 .btn-lg i {
   font-size: 150%;
 }
+.btn-secondary {
+  color: $white;
+}
+
+.lefty-shadow {
+  box-shadow: 0 0 .5rem rgba(#000, .1);
+}
 
 // 標題有底線
+.accent-line {
+  @include accent-line($accent);
+}
 .accent-title {
   display: inline-block;
   position: relative;
@@ -52,10 +69,8 @@ section {
     left: -1rem;
     right: -1rem;
     bottom: .25rem;
-    height: 1rem;
-    background-color: $accent-v;
-    border-radius: $border-radius-pill;
     z-index: -1;
+    @include accent-line($accent-v);
   }
 }
 
@@ -86,6 +101,7 @@ section {
 
 // price
 .price {
+  text-align: right;
   &-current :nth-child(2) {
     font-size: 150%;
     font-weight: 700;
@@ -93,19 +109,22 @@ section {
   }
   &-origin {
     text-decoration: line-through;
+    letter-spacing: 0;
   }
 }
 
 // head
-.backdrop-blur {
-  backdrop-filter: blur(.5rem);
-}
 .head {
   position: relative;
-  height: 32rem;
-  background-image: url(https://storage.googleapis.com/vue-course-api.appspot.com/groen/1648391384666.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=BWg%2Bwbvks6BqQe3lAYVWJJci51FmtQ6j9ymuQw6PzrJRTcAoMFRfTc9eXKyxDuPLg%2FkNQ3Bw7V7sXT34n8TKtX5br9lpOQkG%2BFN6Vlnkv4M719DY6IvERYwP2Wu158VMjivf6gGvo8%2BzVX99MIn4k5mzJhC%2B1t7MfRFjbX8vlibZeecbFGBfo%2BPu2dt8SZWXgDjMu5GwukhKp1NP9UUnp0KEyQQu6m3TTVteDwlbs6IrVkiJhamLIGEnQwcnJmO4ikFqbS%2FufS1%2FnzIKpBFh1k61H%2BYKkXB3RFZyFinwxdkWEeSSAY%2FxPxLrrfGS54%2FEaavs1Qry5CLbGqmQnMBiYg%3D%3D);
-  background-size: cover;
-  background-position:  center;
+  height: 28rem;
+  background: linear-gradient(rgba(#000, .2), rgba(#000, .2)), linear-gradient(rgba($light-v, .25), rgba($light-v, .25)), url('./img/bn_01.jpg') center / cover;
+  z-index: -1;
+}
+.backdrop-blur {
+  backdrop-filter: blur(.25rem);
+}
+.bg-flag {
+  background: url('./img/flag.png') center top no-repeat;
 }
 
 </style>

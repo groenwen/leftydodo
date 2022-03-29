@@ -100,7 +100,8 @@ $theme-colors: (
   "light-v":    $light-v,     // lefty
   "accent":     $accent,      // lefty
   "accent-v":   $accent-v,    // lefty
-  "normal":     $normal       // lefty
+  "normal":     $normal,       // lefty
+  "white":      $white        // lefty
 ) !default;
 // scss-docs-end theme-colors-map
 
@@ -1220,36 +1221,36 @@ $dropdown-dark-header-color:        $gray-500 !default;
 // Pagination
 
 // scss-docs-start pagination-variables
-$pagination-padding-y:              .375rem !default;
+$pagination-padding-y:              .5rem; // lefty .375rem !default;
 $pagination-padding-x:              .75rem !default;
 $pagination-padding-y-sm:           .25rem !default;
 $pagination-padding-x-sm:           .5rem !default;
 $pagination-padding-y-lg:           .75rem !default;
 $pagination-padding-x-lg:           1.5rem !default;
 
-$pagination-color:                  $link-color !default;
-$pagination-bg:                     $white !default;
+$pagination-color:                  $secondary; // lefty $link-color !default;
+$pagination-bg:                     $light; // lefty $white !default;
 $pagination-border-width:           $border-width !default;
-$pagination-border-radius:          $border-radius !default;
+$pagination-border-radius:          $border-radius-pill; // lefty $border-radius !default;
 $pagination-margin-start:           -$pagination-border-width !default;
-$pagination-border-color:           $gray-300 !default;
+$pagination-border-color:           $light-v; // lefty $gray-300 !default;
 
-$pagination-focus-color:            $link-hover-color !default;
-$pagination-focus-bg:               $gray-200 !default;
-$pagination-focus-box-shadow:       $input-btn-focus-box-shadow !default;
+$pagination-focus-color:            $light-v; // lefty $link-hover-color !default;
+$pagination-focus-bg:               $secondary; // lefty $gray-200 !default;
+$pagination-focus-box-shadow:       null; //lefty $input-btn-focus-box-shadow !default;
 $pagination-focus-outline:          0 !default;
 
-$pagination-hover-color:            $link-hover-color !default;
-$pagination-hover-bg:               $gray-200 !default;
-$pagination-hover-border-color:     $gray-300 !default;
+$pagination-hover-color:            $secondary; // lefty $link-hover-color !default;
+$pagination-hover-bg:               darken($light, 10%); // lefty $gray-200 !default;
+$pagination-hover-border-color:     darken($light, 10%); // lefty $gray-300 !default;
 
-$pagination-active-color:           $component-active-color !default;
-$pagination-active-bg:              $component-active-bg !default;
+$pagination-active-color:           $light-v; // lefty $component-active-color !default;
+$pagination-active-bg:              $secondary; // lefty $component-active-bg !default;
 $pagination-active-border-color:    $pagination-active-bg !default;
 
-$pagination-disabled-color:         $gray-600 !default;
+$pagination-disabled-color:         $light; // lefty $gray-600 !default;
 $pagination-disabled-bg:            $white !default;
-$pagination-disabled-border-color:  $gray-300 !default;
+$pagination-disabled-border-color:  $light; // lefty $gray-300 !default;
 
 $pagination-transition:              color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out !default;
 
@@ -1272,7 +1273,7 @@ $card-spacer-y:                     $spacer !default;
 $card-spacer-x:                     $spacer !default;
 $card-title-spacer-y:               $spacer * .5 !default;
 $card-border-width:                 $border-width !default;
-$card-border-color:                 rgba($black, .125) !default;
+$card-border-color:                 $light; // lefty rgba($black, .125) !default;
 $card-border-radius:                $border-radius !default;
 $card-box-shadow:                   null !default;
 $card-inner-border-radius:          subtract($card-border-radius, $card-border-width) !default;
